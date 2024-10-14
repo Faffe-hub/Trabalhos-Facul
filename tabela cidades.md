@@ -15,11 +15,11 @@
             color: #4CAF50;
             text-align: center;
         }
-        .info, .table-section {
+        .info {
             text-align: center;
             margin: 20px 0;
         }
-        .link {
+        .toggle-btn {
             display: inline-block;
             width: 200px;
             margin: 20px auto;
@@ -30,9 +30,15 @@
             text-decoration: none;
             border-radius: 5px;
             transition: background-color 0.3s;
+            cursor: pointer;
         }
-        .link:hover {
+        .toggle-btn:hover {
             background-color: #45a049;
+        }
+        .table-section {
+            text-align: center;
+            margin: 20px 0;
+            display: none; /* Inicialmente escondido */
         }
         table {
             width: 100%;
@@ -63,7 +69,8 @@
     <p><strong>RA:</strong> 12623112780</p>
 </div>
 
-<a class="link" href="#tabela-cidades">Ver Tabela de Cidades</a>
+<!-- Botão para mostrar/esconder a tabela -->
+<div class="toggle-btn" onclick="toggleTable()">Ver Tabela de Cidades</div>
 
 <!-- Seção da tabela de cidades -->
 <div class="table-section" id="tabela-cidades">
@@ -96,7 +103,16 @@
     </table>
 </div>
 
-<a class="link" href="#topo">Voltar para o Topo</a>
+<script>
+    function toggleTable() {
+        var tableSection = document.getElementById('tabela-cidades');
+        if (tableSection.style.display === "none" || tableSection.style.display === "") {
+            tableSection.style.display = "block"; // Mostrar a tabela
+        } else {
+            tableSection.style.display = "none"; // Esconder a tabela
+        }
+    }
+</script>
 
 </body>
 </html>
