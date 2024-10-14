@@ -3,12 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela de Cidades</title>
+    <title>ATIVIDADE PRÁTICA DE ACESSO API</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #4CAF50;
+            text-align: center;
+        }
+        .info {
+            text-align: center;
+            margin: 20px 0;
         }
         table {
             width: 100%;
@@ -28,11 +37,23 @@
         tr:hover {
             background-color: #f5f5f5;
         }
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            color: #ff5722;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
-<h2>Tabela de Cidades</h2>
+<h1>ATIVIDADE PRÁTICA DE ACESSO API</h1>
+
+<div class="info">
+    <p><strong>Nome completo:</strong> Marcelo Faffe Ribeiro Grillo</p>
+    <p><strong>RA:</strong> 12623112780</p>
+</div>
+
 <table>
     <tr>
         <th>ID</th>
@@ -60,6 +81,22 @@
     </tr>
 </table>
 
+<div class="message" id="message"></div>
+
+<script>
+    // Função para mostrar uma mensagem após um certo tempo
+    function showMessage() {
+        const messageDiv = document.getElementById('message');
+        messageDiv.textContent = "Tabela carregada com sucesso!";
+        messageDiv.style.display = 'block';
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 3000);
+    }
+
+    // Chamar a função para mostrar a mensagem
+    window.onload = showMessage;
+</script>
+
 </body>
 </html>
-
