@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATIVIDADE PRÁTICA DE ACESSO API</title>
+    <title>Tabela de Cidades</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -14,10 +14,6 @@
         h1 {
             color: #4CAF50;
             text-align: center;
-        }
-        .info {
-            text-align: center;
-            margin: 20px 0;
         }
         table {
             width: 100%;
@@ -37,22 +33,26 @@
         tr:hover {
             background-color: #f5f5f5;
         }
-        .message {
+        .link {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
             text-align: center;
-            margin-top: 20px;
-            color: #ff5722;
-            display: none;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .link:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
 
-<h1>ATIVIDADE PRÁTICA DE ACESSO API</h1>
-
-<div class="info">
-    <p><strong>Nome completo:</strong> Marcelo Faffe Ribeiro Grillo</p>
-    <p><strong>RA:</strong> 12623112780</p>
-</div>
+<h1>Tabela de Cidades</h1>
 
 <table>
     <tr>
@@ -81,22 +81,7 @@
     </tr>
 </table>
 
-<div class="message" id="message"></div>
-
-<script>
-    // Função para mostrar uma mensagem após um certo tempo
-    function showMessage() {
-        const messageDiv = document.getElementById('message');
-        messageDiv.textContent = "Tabela carregada com sucesso!";
-        messageDiv.style.display = 'block';
-        setTimeout(() => {
-            messageDiv.style.display = 'none';
-        }, 3000);
-    }
-
-    // Chamar a função para mostrar a mensagem
-    window.onload = showMessage;
-</script>
+<a class="link" href="index.html">Voltar para a Página Inicial</a>
 
 </body>
 </html>
