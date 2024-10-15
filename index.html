@@ -70,7 +70,7 @@
 
     <script>
         document.getElementById('loginForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
+            event.preventDefault();  // Impede o envio padrão do formulário
 
             // Captura os valores inseridos pelo usuário
             const email = document.getElementById('email').value;
@@ -91,11 +91,13 @@
 
                 const data = await response.json();
 
+                // Verifica se a resposta foi bem-sucedida
                 if (response.ok) {
                     console.log('Token recebido:', data.token);
                     document.getElementById('message').innerText = 'Login realizado com sucesso! Token: ' + data.token;
                     localStorage.setItem('token', data.token); // Armazena o token localmente
                 } else {
+                    // Exibe uma mensagem de erro caso o login falhe
                     document.getElementById('message').innerText = 'Erro no login: ' + data.message;
                 }
             } catch (error) {
