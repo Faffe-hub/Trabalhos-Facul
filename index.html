@@ -77,7 +77,7 @@
             const password = document.getElementById('password').value;
 
             try {
-                // Faz a requisição POST para o endpoint de login
+                // Faz a requisição POST para o endpoint de login (HTTP)
                 const response = await fetch('http://137.184.108.252:5000/api/login', {
                     method: 'POST',
                     headers: {
