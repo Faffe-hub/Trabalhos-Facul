@@ -3,119 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ATIVIDADE PRÁTICA DE ACESSO API</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 20px;
-            color: #333;
-        }
-        h1 {
-            color: #4CAF50;
-            text-align: center;
-        }
-        .info {
-            text-align: center;
-            margin: 20px 0;
-        }
-        .toggle-btn {
-            display: inline-block;
-            width: 200px;
-            margin: 20px auto;
-            padding: 10px;
-            text-align: center;
-            background-color: #4CAF50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            cursor: pointer;
-        }
-        .toggle-btn:hover {
-            background-color: #45a049;
-        }
-        .table-section {
-            text-align: center;
-            margin: 20px 0;
-            display: none; /* Inicialmente escondido */
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-        tr:hover {
-            background-color: #f5f5f5;
-        }
-    </style>
+    <title>Login API</title>
 </head>
 <body>
+    <h1>Login na API</h1>
+    
+    <!-- Formulário simples para email e senha -->
+    <form id="loginForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required><br><br>
+        
+        <label for="password">Senha:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <button type="submit">Login</button>
+    </form>
 
-<h1>ATIVIDADE PRÁTICA DE ACESSO API</h1>
+    <p id="message"></p> <!-- Para exibir mensagens de erro ou sucesso -->
 
-<div class="info">
-    <p><strong>Nome completo:</strong> Marcelo Faffe Ribeiro Grillo</p>
-    <p><strong>RA:</strong> 12623112780</p>
-</div>
+    <script>
+        // Seleciona o formulário e adiciona o evento de 'submit'
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+            event.preventDefault(); // Previne o comportamento padrão de envio de formulário
 
-<!-- Botão para mostrar/esconder a tabela -->
-<div class="toggle-btn" onclick="toggleTable()">Ver Tabela de Cidades</div>
+            // Coleta os valores de email e senha do formulário
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-<!-- Seção da tabela de cidades -->
-<div class="table-section" id="tabela-cidades">
-    <h2>Tabela de Cidades</h2>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Nome</th>
-        </tr>
-        <tr>
-            <td>1101450</td>
-            <td>Parecis</td>
-        </tr>
-        <tr>
-            <td>1715507</td>
-            <td>Oliveira de Fátima</td>
-        </tr>
-        <tr>
-            <td>3150000</td>
-            <td>Pescador</td>
-        </tr>
-        <tr>
-            <td>3159506</td>
-            <td>Santa Rita do Itueto</td>
-        </tr>
-        <tr>
-            <td>5003157</td>
-            <td>Coronel Sapucaia</td>
-        </tr>
-    </table>
-</div>
+            try {
+                // Faz a requisição POST para o endpoint de login
+                const response = await fetch('https://sua-api.com/api/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        email: email,
+                        password: password
+                    })
+                });
 
-<script>
-    function toggleTable() {
-        var tableSection = document.getElementById('tabela-cidades');
-        // Alterna a visibilidade da tabela
-        if (tableSection.style.display === "none" || tableSection.style.display === "") {
-            tableSection.style.display = "block"; // Mostrar a tabela
-            document.querySelector('.toggle-btn').textContent = "Esconder Tabela de Cidades"; // Alterar texto do botão
-        } else {
-            tableSection.style.display = "none"; // Esconder a tabela
-            document.querySelector('.toggle-btn').textContent = "Ver Tabela de Cidades"; // Alterar texto do botão
-        }
-    }
-</script>
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Exibe o token recebido no console e em uma mensagem
+                    console.log('Token recebido:', data.token);
+                    document.getElementById('message').innerText = 'Login realizado com sucesso! Token: ' + data.token;
+                    
+                    // Salva o token no localStorage (opcional)
+                    localStorage.setItem('token', data.token);
+                } else {
+                    // Exibe a mensagem de erro
+                    document.getElementById('message').innerText = 'Erro no login: ' + data.message;
+                }
+            } catch (error) {
+                console.error('Erro na requisição:', error);
+                document.getElementById('message').innerText = 'Erro na requisição: ' + error.message;
+            }
+        });
+    </script>
 
 </body>
 </html>
